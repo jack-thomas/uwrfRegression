@@ -1,4 +1,25 @@
-fitme<-function(x,y,matrix.out=F,asm.out=F,anova.out=F,shapiro.out=F,bp.out=F,
+#' Chatterjee Simple Linear Regression
+#'
+#' This function performs simple linear regression (with transformations) using the methodology
+#' taught by Dr. Arunendu Chatterjee for Fall 2016.
+#' @param x a vector of x values (representing the independent variable).
+#' @param y a vector of y values (representing the dependent variable).
+#' @param matrix.out whether to provide a matrix of adjusted R-squared values
+#' @param asm.out whether to provide results of assumption checking.
+#' @param anova.out whether to provide ANOVA results.
+#' @param shapiro.out whether to provide results of the Shapiro-Wilk test.
+#' @param bp.out whether to provide results of the Breusch-Pagan test.
+#' @param summary.out whether to provide summary of best regression.
+#' @param plot.out whether to provide relevant plots.
+#' @param conf.out whether to create confidence intervals for coefficients.
+#' @param conf.level confidence level for conf.out.
+#' @keywords cslr
+#' @export
+#' @examples
+#' cslr()
+
+
+cslr<-function(x,y,matrix.out=F,asm.out=F,anova.out=F,shapiro.out=F,bp.out=F,
                 summary.out=F,plot.out=T,conf.out=F,conf.level=0.95){
   ##Create a data frame of the data and possible transformations
   df.func=data.frame(x,y)
