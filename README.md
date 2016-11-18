@@ -7,6 +7,8 @@ This R package seeks to automate regression in the way that it is taught at the 
     library(devtools)
     install_github("thecrosbyfan/uwrfRegression")
 
+## Development Notes
+
 ### Initial Package Build Essentials
 
     #install.packages("devtools")
