@@ -18,7 +18,6 @@
 #' @examples
 #' cslr()
 
-
 cslr<-function(x,y,matrix.out=F,asm.out=F,anova.out=F,shapiro.out=F,bp.out=F,
                 summary.out=F,plot.out=T,conf.out=F,conf.level=0.95){
   ##Create a data frame of the data and possible transformations
