@@ -44,3 +44,4 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
 - Look at Group Assignments 2-7, and create functions to automate each of those.
 - Figure out dependencies. The ``lmtest`` package is certainly one.
 - Add stuff to the ``DESCRIPTION`` file. [This](https://github.com/klutometis/roxygen/blob/master/DESCRIPTION) is a fine example.
+- Add a contact me section; move development notes off of main branch.
