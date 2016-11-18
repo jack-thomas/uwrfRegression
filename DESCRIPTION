@@ -1,10 +1,9 @@
 Package: uwrfRegression
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
+Title: Automated Regression for UWRF Math 327
+Version: 0.0.a1
 Authors@R: person("Jack", "Thomas", email = "jack@jackthomas.io", role = c("aut", "cre"))
-Description: This R package seeks to automate linear regression in the way that it is taught at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis.
+Description: Automates regression using the methodology prescribed at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis.
 Depends: R (>= 3.3.2)
-License: What license is it under?
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1.9000

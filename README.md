@@ -1,6 +1,6 @@
 # uwrfRegression
 
-This R package seeks to automate linear regression in the way that it is taught at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis. [This blog post](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) was used as a guide for how to create this R package.
+This R package seeks to automate regression in the way that it is taught at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis. [This blog post](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) was used as a guide for how to create this R package.
 
 ### Initial Package Build Essentials
 
