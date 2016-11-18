@@ -2,6 +2,11 @@
 
 This R package seeks to automate regression in the way that it is taught at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis. [This blog post](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) was used as a guide for how to create this R package.
 
+## How to Install This Package
+
+    library(devtools)
+    install_github("thecrosbyfan/uwrfRegression")
+
 ### Initial Package Build Essentials
 
     #install.packages("devtools")
