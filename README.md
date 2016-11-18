@@ -17,3 +17,8 @@ This R package seeks to automate linear regression in the way that it is taught 
 
     setwd("~/projects")
     install("uwrfRegression")
+
+### TO DO
+
+- Update ``cslr()`` so that it provides the output of ``lm(y~x)`` regardless of whether it's the best transformation or not.
+- Create ``cmlr()``, which automates multiple linear regression.
