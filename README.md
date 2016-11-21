@@ -43,6 +43,7 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
   - ``cmlr()``, which automates multiple linear regression. It should be able to check assumptions (including multicollinearity) and do model selection.
   - ``ctsr()``, which automates time series regression. It should be able to do moving averages, scaling, etc.
   - ``eSmooth()``, which exponentially smooths a series based on ``alpha``, which defaults to ``0.2``.
+  - ``uPoly()``, which does polynomial time series regression.
 - Look at Group Assignments 2-7, and create functions to automate each of those.
 - Figure out dependencies. They include (at least):
   - ``lmtest``
