@@ -9,6 +9,12 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
     library(devtools)
     install_github("thecrosbyfan/uwrfRegression")
 
+## Functions In This Package
+
+- ``cslr()``, simple linear regression.
+- ``cmlr()``, multiple linear regression (NOT YET).
+- ``eSmooth()``, exponential smoothing.
+
 ## Development Notes
 
 ### Initial Package Build Essentials
@@ -35,6 +41,7 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
     document()
     setwd("../")
     install("uwrfRegression")
+    library(uwrfRegression)
 
 ### TO DO
 
