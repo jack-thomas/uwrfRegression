@@ -42,6 +42,10 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
 - Create ``cmlr()``, which automates multiple linear regression. It should be able to check assumptions (including multicollinearity) and do model selection.
 - Create ``ctsr()``, which automates time series regression. It should be able to do moving averages, scaling, etc.
 - Look at Group Assignments 2-7, and create functions to automate each of those.
-- Figure out dependencies. The ``lmtest`` package is certainly one.
+- Figure out dependencies. They include (at least):
+  - ``lmtest``
+  - ``fmsb``
+  - ``usdm``
+  - ``MASS``
 - Add stuff to the ``DESCRIPTION`` file. [This](https://github.com/klutometis/roxygen/blob/master/DESCRIPTION) is a fine example.
 - Add a contact me section; move development notes off of main branch.
