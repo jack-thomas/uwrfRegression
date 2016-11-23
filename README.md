@@ -48,6 +48,9 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
 - Update ``cslr()`` so that it provides the output of ``lm(y~x)`` regardless of whether it's the best transformation or not. Add a boolean input, ``simple`` (default ``TRUE``), that determines whether to provide ``lm(y~x)`` output. Also, add a boolean input that determines whether to try transformations at all. Earlier in the semester, we didn't use transformations at all.
 - Functions to create:
   - ``cmlr()``, which automates multiple linear regression. It should be able to check assumptions (including multicollinearity) and do model selection.
+    - You still need to consider transformations on X.
+    - You still need to the prediction intervals.
+  - ``vifRM()``, which automates multicollinearity VIF removals.
   - ``ctsr()``, which automates time series regression. It should be able to do moving averages, scaling, etc.
   - ``eSmooth()``, which exponentially smooths a series based on ``alpha``, which defaults to ``0.2``.
   - ``uPoly()``, which does polynomial time series regression.

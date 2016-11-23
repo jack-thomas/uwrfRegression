@@ -32,7 +32,7 @@ cslr(x, y, matrix.out = F, asm.out = F, anova.out = F, shapiro.out = F,
 \item{conf.level}{confidence level for conf.out.}
 }
 \description{
-This function performs simple linear regression (with transformations) using the methodology
+Performs simple linear regression (with transformations) using the methodology
 taught by Dr. Arunendu Chatterjee for Fall 2016.
 }
 \examples{

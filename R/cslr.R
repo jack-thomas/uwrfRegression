@@ -1,6 +1,6 @@
 #' Chatterjee Simple Linear Regression
 #'
-#' This function performs simple linear regression (with transformations) using the methodology
+#' Performs simple linear regression (with transformations) using the methodology
 #' taught by Dr. Arunendu Chatterjee for Fall 2016.
 #' @param x a vector of x values (representing the independent variable).
 #' @param y a vector of y values (representing the dependent variable).

@@ -4,13 +4,21 @@
 \alias{cmlr}
 \title{Chatterjee Multiple Linear Regression}
 \usage{
-cmlr(x)
+cmlr(x, plot.out = FALSE, trace = 2, dir = "both")
 }
 \arguments{
-\item{x}{a data frame for regression, where the first column is the dependent variable}
+\item{x}{a data frame for regression, where the first column is the dependent variable.}
+
+\item{plot.out}{a boolen value indicating whether to provide diagnostic plots.}
+
+\item{trace}{a nonnegative integer [0, 2], indicating how much diagnostic and processing
+information to print as the function runs. Specifically, 0 will print no information,
+1 will print the initial and final models, and 2 will print everything.}
+
+\item{dir}{the direction in which you want to do stepwise model selection.}
 }
 \description{
-This function performs multiple linear regression (with transformations) using
+Performs multiple linear regression (with transformations) using
 the methodology taught by Dr. Arunendu Chatterjee for Fall 2016.
 }
 \examples{
