@@ -4,10 +4,12 @@
 \alias{cmlr}
 \title{Chatterjee Multiple Linear Regression}
 \usage{
-cmlr(x, plot.out = FALSE, trace = 2, dir = "both")
+cmlr(x, vif.lim = 10, plot.out = FALSE, trace = 2, dir = "both")
 }
 \arguments{
 \item{x}{a data frame for regression, where the first column is the dependent variable.}
+
+\item{vif.lim}{the maximum vif allowed when removing variables due to multicollinearity.}
 
 \item{plot.out}{a boolen value indicating whether to provide diagnostic plots.}
 
