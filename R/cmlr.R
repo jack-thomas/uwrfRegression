@@ -71,10 +71,10 @@ cmlr<-function(x, vif.lim = 10, plot.out = FALSE, trace = 2, dir = "both"){
   #OR JUST TRY ALL COMBINATIONS OF TRANSFORMATIONS?
   
   #TRANSFORMATIONS ON Y (WHERE APPLICABLE)
-  if (trace > 1){
-    cat("\n**************** Transformations:\n")
-  }
   if (p.bp < 0.05 || p.sw < 0.05){
+    if (trace > 1){
+      cat("\n**************** Transformations:\n")
+    }
     for (i in c(1:3)){
       #RECREATE THE MODEL WITH TRANSFORMATIONS
       if (i == 1) {tmodel <- "I(log(x[,1])) ~ "}
