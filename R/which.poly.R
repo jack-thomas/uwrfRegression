@@ -2,9 +2,9 @@
 #'
 #' This function performs time series polynomial regression. It returns the
 #' polynomial regression with the best adjusted r-squared value.
-#' @param x a vector of time series data upon which to perform polynomial regression
-#' @param t a vector of time series sequence information
-#' @param degree.max the maximum degree to consider for polynomial regression
+#' @param x a vector of time series data upon which to perform polynomial regression.
+#' @param t a vector of time series sequence information.
+#' @param degree.max the maximum degree to consider for polynomial regression.
 #' @keywords which.poly
 #' @export
 #' @examples

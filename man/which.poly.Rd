@@ -7,11 +7,11 @@
 which.poly(x, t = NULL, degree.max = 10)
 }
 \arguments{
-\item{x}{a vector of time series data upon which to perform polynomial regression}
+\item{x}{a vector of time series data upon which to perform polynomial regression.}
 
-\item{t}{a vector of time series sequence information}
+\item{t}{a vector of time series sequence information.}
 
-\item{degree.max}{the maximum degree to consider for polynomial regression}
+\item{degree.max}{the maximum degree to consider for polynomial regression.}
 }
 \description{
 This function performs time series polynomial regression. It returns the
