@@ -11,54 +11,9 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
 
 ## Functions In This Package
 
+The following packages are included as part of this package. Please note that some of them are not yet completed.
+
+- ``cmlr()``, multiple linear regression.
 - ``cslr()``, simple linear regression.
-- ``cmlr()``, multiple linear regression (NOT YET).
-- ``eSmooth()``, exponential smoothing.
-
-## Development Notes
-
-### Initial Package Build Essentials
-
-    #install.packages("devtools")
-    library(devtools)
-    #devtools::install_github("klutometis/roxygen")
-    library(roxygen2)
-
-    setwd("~/projects")
-    create("uwrfRegression")
-
-    setwd("~/projects/uwrfRegression")
-    document()
-
-    setwd("~/projects")
-    install("uwrfRegression")
-
-### Iterative Development Essentials
-
-    library(devtools)
-    library(roxygen2)
-    setwd("~/projects/uwrfRegression")
-    document()
-    setwd("../")
-    install("uwrfRegression")
-    library(uwrfRegression)
-
-### TO DO
-
-- Update ``cslr()`` so that it provides the output of ``lm(y~x)`` regardless of whether it's the best transformation or not. Add a boolean input, ``simple`` (default ``TRUE``), that determines whether to provide ``lm(y~x)`` output. Also, add a boolean input that determines whether to try transformations at all. Earlier in the semester, we didn't use transformations at all.
-- Functions to create:
-  - ``cmlr()``, which automates multiple linear regression. It should be able to check assumptions (including multicollinearity) and do model selection.
-    - You still need to consider transformations on X.
-    - You still need to the prediction intervals.
-  - ``vifRM()``, which automates multicollinearity VIF removals.
-  - ``ctsr()``, which automates time series regression. It should be able to do moving averages, scaling, etc.
-  - ``eSmooth()``, which exponentially smooths a series based on ``alpha``, which defaults to ``0.2``.
-  - ``uPoly()``, which does polynomial time series regression.
-- Look at Group Assignments 2-7, and create functions to automate each of those.
-- Figure out dependencies. They include (at least):
-  - ``lmtest``
-  - ``fmsb``
-  - ``usdm``
-  - ``MASS``
-- Add stuff to the ``DESCRIPTION`` file. [This](https://github.com/klutometis/roxygen/blob/master/DESCRIPTION) is a fine example.
-- Add a contact me section; move development notes off of main branch.
+- ``eSmooth()``, exponential smoothing for time series.
+- ``which.poly``, polynomial time series regression.
