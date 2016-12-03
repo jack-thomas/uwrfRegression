@@ -108,8 +108,8 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
   names(df.relevant)[ncol(df.relevant)] <- "ReS"
   
   #Predictions (if requested)
-  predictions <- c()
   if (no.predict != 0){
+    predictions <- c()
     for (i in c(1:no.predict)){
       df.relevant[(no.elts+i),] <- c(rep(NA, ncol(df.relevant)))
       df.relevant[(no.elts+i),2] <- ifelse(i %% ts.frequency == 0, ts.frequency, i %% ts.frequency)
@@ -117,14 +117,14 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
       df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
       df.relevant[(no.elts+i),ncol(df.relevant)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-3)] * df.relevant[(no.elts+i),(ncol(df.relevant)-1)]
     }
+    #Add periods
+    newperiods <- c()
+    for (i in c(1:(ceiling(no.elts + no.predict)/ts.frequency))){
+      newperiods <- c(newperiods,rep(df.relevant[no.elts,1]+i, ts.frequency))
+    }
+    df.relevant[c((no.elts+1):(no.elts+no.predict)),1] <- newperiods[c(1:no.predict)]
   }
   
-  #Add periods
-  newperiods <- c()
-  for (i in c(1:(ceiling(no.elts + no.predict)/ts.frequency))){
-    newperiods <- c(newperiods,rep(df.relevant[no.elts,1]+i, ts.frequency))
-  }
-  df.relevant[c((no.elts+1):(no.elts+no.predict)),1] <- newperiods[c(1:no.predict)]
   
   #Print Data Frame (if requested)
   if (df.print) print(df.relevant)
