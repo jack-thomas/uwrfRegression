@@ -38,7 +38,7 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
   }
   periods <- periods[c(1:no.elts)]
   
-  ts.relevant <- ts(ts.data, start = c(year.start,1), end = c(year.end, ts.frequency),
+  ts.relevant <- ts(ts.data, start = c(periods[1],1), end = c(periods[length(periods)], ts.frequency),
                     frequency = ts.frequency)
   df.relevant <- data.frame(periods,c(1:no.elts),ts.data)
   for (i in c(1:no.elts)){

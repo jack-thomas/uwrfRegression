@@ -15,6 +15,7 @@ The following packages are included as part of this package. Please note that so
 
 - ``cmlr()``, multiple linear regression.
 - ``cslr()``, simple linear regression.
+- ``csts()``, which does seasonal time series stuff.
 - ``eSmooth()``, exponential smoothing for time series.
 - ``which.poly``, polynomial time series regression.
 
