@@ -2,5 +2,6 @@
 
 export(cmlr)
 export(cslr)
+export(csts)
 export(eSmooth)
-export(which.poly)
+export(ts.poly)

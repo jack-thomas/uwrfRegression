@@ -1,16 +1,16 @@
-#' Polynomial Regression
+#' Polynomial Time Series Regression
 #'
-#' This function performs time series polynomial regression. It returns the
+#' This function performs polynomial time series regression. It returns the
 #' polynomial regression with the best adjusted r-squared value.
 #' @param x a vector of time series data upon which to perform polynomial regression.
 #' @param t a vector of time series sequence information.
 #' @param degree.max the maximum degree to consider for polynomial regression.
-#' @keywords which.poly
+#' @keywords ts.poly
 #' @export
 #' @examples
-#' which.polt()
+#' ts.poly()
 
-which.poly <- function(x,t=NULL,degree.max=10){
+ts.poly <- function(x,t=NULL,degree.max=10){
   if(is.null(t)){
     t <- c(1:length(x))
   }
