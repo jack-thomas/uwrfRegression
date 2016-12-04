@@ -17,10 +17,10 @@ Load ``devtools`` and install the package in this repository:
 
 ## Functions In This Package
 
-The following packages are included as part of this package. Please note that some of them are not yet completed.
+The following packages are included as part of this package. Please note that some of them are not yet completed. See [projects](projects/) for more information.
 
 - ``cmlr()``, multiple linear regression.
 - ``cslr()``, simple linear regression.
-- ``csts()``, which does seasonal time series stuff. (Currently, I only work if you have data from the first subperiod of the first period to the last subperiod of the last period. For example, if you have quarterly data, it must begin with quarter one and end with quarter four.)
+- ``csts()``, which does seasonal time series stuff.
 - ``eSmooth()``, exponential smoothing for time series.
 - ``ts.poly()``, polynomial time series regression.
