@@ -17,10 +17,14 @@ Load ``devtools`` and install the package in this repository:
 
 ## Functions In This Package
 
-The following packages are included as part of this package. Please note that some of them are not yet completed. See [projects](projects/) for more information.
+The following packages are included as part of this package. Please note that some of them are not yet completed. See [projects](https://github.com/thecrosbyfan/uwrfRegression/projects/) for more information.
 
 - ``cmlr()``, multiple linear regression.
 - ``cslr()``, simple linear regression.
 - ``csts()``, which does seasonal time series stuff.
 - ``eSmooth()``, exponential smoothing for time series.
 - ``ts.poly()``, polynomial time series regression.
+
+## Contact Me
+
+Please feel free to shoot me an email: [jack@jackthomas.io](mailto:jack@jackthomas.io).
