@@ -6,6 +6,12 @@ DISCLAIMER: This package will not, and likely cannot, cover every possible scena
 
 ## How to Install This Package
 
+If you don't have ``devtools`` installed, install it:
+
+    install.packages("devtools")
+
+Load ``devtools`` and install the package in this repository:
+
     library(devtools)
     install_github("thecrosbyfan/uwrfRegression")
 
