@@ -23,7 +23,7 @@ The following packages are included as part of this package. Please note that so
 - ``cslr()``, simple linear regression.
 - ``csts()``, which does seasonal time series stuff. (Currently, I only work if you have data from the first subperiod of the first period to the last subperiod of the last period. For example, if you have quarterly data, it must begin with quarter one and end with quarter four.)
 - ``eSmooth()``, exponential smoothing for time series.
-- ``which.poly``, polynomial time series regression.
+- ``ts.poly()``, polynomial time series regression.
 
 ## Dependencies
 The dependencies for this package include the following libraries (all of which are available through CRAN):
