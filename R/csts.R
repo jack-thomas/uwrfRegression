@@ -16,7 +16,7 @@
 #' @param plot.initial a boolean indicating whether you want a plot of the initial time series.
 #' @param out whether you want a data frame (out = "data.frame") or the deseasonalized linear
 #' model (out = "model") to be provided as output.
-#' @param df.print a boolean value indicating whether you want the data frame to be printed.
+#' @param results.print a boolean value indicating whether you want the data frame to be printed.
 #' @param no.predict the number of predictions to perform.
 #' @keywords csts
 #' @export
@@ -25,7 +25,7 @@
 
 csts <- function(data = NA, start = NULL, end = NULL, frequency = 1,
                  plot.initial = FALSE, out = c("data.frame", "model"),
-                 df.print = FALSE, no.predict = 0){
+                 results.print = FALSE, no.predict = 0){
   #How many elements are in the data?
   no.elts <- length(data)
   
@@ -109,6 +109,10 @@ csts <- function(data = NA, start = NULL, end = NULL, frequency = 1,
   df.relevant[,ncol(df.relevant)+1] <- df.relevant[,ncol(df.relevant)-2] * df.relevant[,ncol(df.relevant)]
   names(df.relevant)[ncol(df.relevant)] <- "ReS"
   
+  #Square Error
+  df.relevant[,ncol(df.relevant)+1] <- (df.relevant[,3] - df.relevant[,ncol(df.relevant)])^2
+  names(df.relevant)[ncol(df.relevant)] <- "SqError"
+  
   #Predictions (if requested)
   if (no.predict != 0){
     predictions <- c()
@@ -133,7 +137,10 @@ csts <- function(data = NA, start = NULL, end = NULL, frequency = 1,
   }
   
   #Print Data Frame (if requested)
-  if (df.print) print(df.relevant)
+  if (results.print){
+    print(df.relevant)
+    cat("\nRoot Mean Square Error:",sqrt(mean(df.revenue[,ncol(df.revenue)])))
+  }
   
   #Return Requested
   if (out[1] == "model"){

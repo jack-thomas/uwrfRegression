@@ -5,8 +5,8 @@
 \title{Seasonal Time Series Regression}
 \usage{
 csts(data = NA, start = NULL, end = NULL, frequency = 1,
-  plot.initial = FALSE, out = c("data.frame", "model"), df.print = FALSE,
-  no.predict = 0)
+  plot.initial = FALSE, out = c("data.frame", "model"),
+  results.print = FALSE, no.predict = 0)
 }
 \arguments{
 \item{data}{time series data.}
@@ -24,7 +24,7 @@ unit. See the examples for the use of the second form.}
 \item{out}{whether you want a data frame (out = "data.frame") or the deseasonalized linear
 model (out = "model") to be provided as output.}
 
-\item{df.print}{a boolean value indicating whether you want the data frame to be printed.}
+\item{results.print}{a boolean value indicating whether you want the data frame to be printed.}
 
 \item{no.predict}{the number of predictions to perform.}
 }
