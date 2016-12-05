@@ -23,7 +23,7 @@
 #' @examples
 #' csts()
 
-csts <- function(data = NA, start = NULL, end = NULL, frequency = 1,
+csts <- function(data, start = NULL, end = NULL, frequency = 1,
                  plot.initial = FALSE, out = c("data.frame", "model"),
                  results.print = FALSE, no.predict = 0){
   #How many elements are in the data?

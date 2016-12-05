@@ -4,7 +4,7 @@
 \alias{csts}
 \title{Seasonal Time Series Regression}
 \usage{
-csts(data = NA, start = NULL, end = NULL, frequency = 1,
+csts(data, start = NULL, end = NULL, frequency = 1,
   plot.initial = FALSE, out = c("data.frame", "model"),
   results.print = FALSE, no.predict = 0)
 }
