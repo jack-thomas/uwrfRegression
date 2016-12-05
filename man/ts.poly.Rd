@@ -4,14 +4,12 @@
 \alias{ts.poly}
 \title{Polynomial Time Series Regression}
 \usage{
-ts.poly(x, t = NULL, degree.max = 10)
+ts.poly(x, t = NULL)
 }
 \arguments{
 \item{x}{a vector of time series data upon which to perform polynomial regression.}
 
 \item{t}{a vector of time series sequence information.}
-
-\item{degree.max}{the maximum degree to consider for polynomial regression.}
 }
 \description{
 This function performs polynomial time series regression. It returns the
