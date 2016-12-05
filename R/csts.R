@@ -7,66 +7,65 @@
 #' forecasting method out past the end of the data set.
 #' . It either returns a data frame containing
 #' an abundance of information (including the final prediction) or it returns the model.
-#' @param ts.data time series data
-#' @param year.start the (optional) year in which the data starts
-#' @param year.end the (optional) year in which the data ends
-#' @param ts.frequency the number of observations per unit of time
+#' @param data time series data.
+#' @param start	the time of the first observation. Either a single number or a vector of two
+#' integers, which specify a natural time unit and a (1-based) number of samples into the time
+#' unit. See the examples for the use of the second form.
+#' @param end	the time of the last observation, specified in the same way as start.
+#' @param frequency the number of observations per unit of time.
+#' @param plot.initial a boolean indicating whether you want a plot of the initial time series.
+#' @param out whether you want a data frame (out = "data.frame") or the deseasonalized linear
+#' model (out = "model") to be provided as output.
+#' @param df.print a boolean value indicating whether you want the data frame to be printed.
+#' @param no.predict the number of predictions to perform.
 #' @keywords csts
 #' @export
 #' @examples
 #' csts()
 
-csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
-                 plot.initial = FALSE, out = c("data.frame", "model"), df.print = FALSE,
-                 no.predict = 0){
+csts <- function(data = NA, start = NULL, end = NULL, frequency = 1,
+                 plot.initial = FALSE, out = c("data.frame", "model"),
+                 df.print = FALSE, no.predict = 0){
   #How many elements are in the data?
-  no.elts <- length(ts.data)
-  #Assign periods if years not assigned
-  periods <- c()
-  if (is.null(ts.start) && is.null(ts.end)){
-    #Both are null
-    for (i in c(1:ceiling(no.elts/ts.frequency))){
-      periods <- c(periods,rep(i,ts.frequency))
-    }
-  } else if (is.null(ts.start) || is.null(ts.end)) {
-    #WHAT TO DO IF ONLY ONE IS NULL?
-  } else {
-    #Neither are null
-    for (i in c(ts.start:ts.end)){
-      periods <- c(periods,rep(i,ts.frequency))
-    }
-  }
-  periods <- periods[c(1:no.elts)]
+  no.elts <- length(data)
   
-  ts.relevant <- ts(ts.data, start = c(periods[1],1), end = c(periods[length(periods)], ts.frequency),
-                    frequency = ts.frequency)
-  df.relevant <- data.frame(periods,c(1:no.elts),ts.data)
-  for (i in c(1:no.elts)){
-    df.relevant[i,2] <- i %% ts.frequency
-    if (df.relevant[i,2] == 0) df.relevant[i,2] <- ts.frequency
+  #Create a time series
+  if (is.null(start)) start <- c(1, 1)
+  if (is.null(end)) end <- c(ceiling(no.elts / frequency), no.elts %% frequency)
+  if (end[2] == 0) end[2] <- frequency
+  ts.relevant <- ts(data, start = start, end = end, frequency = frequency)
+  
+  #Plot the initial time series, if requested
+  if (plot.initial) plot(ts.relevant)
+  
+  #Create a data frame.
+  df.relevant <- data.frame(start[1], start[2], data[1])
+  for (i in c(2:no.elts)){
+    df.relevant[i,] <- c(df.relevant[i-1,1], df.relevant[i-1,2]+1, data[i])
+    if (df.relevant[i, 2] > frequency){
+      df.relevant[i, 2] <- 1
+      df.relevant[i, 1] <- df.relevant[i-1, 1] + 1
+    }
   }
   names(df.relevant) <- c("Period","SubPer","Data")
-  if (plot.initial){
-    plot(ts.relevant, ylab = "Value", main = "Initial Time Series Plot")
-  }
   
   #Moving Average(s)
-  if (ts.frequency %% 2 == 0){
+  if (frequency %% 2 == 0){
     #Even frequencies
-    mv.freq <- rollmean(df.relevant[,3],ts.frequency)
-    mv.freq <- c(rep(NA,ts.frequency/2),mv.freq)
+    mv.freq <- rollmean(df.relevant[,3],frequency)
+    mv.freq <- c(rep(NA,frequency/2),mv.freq)
     mv.freq <- c(mv.freq,rep(NA,length(df.relevant[,3])-length(mv.freq)))
     df.relevant[,4] <- mv.freq
     mv.freq <- rollmean(na.omit(mv.freq),2)
-    mv.freq <- c(rep(NA,ts.frequency/2),mv.freq,rep(NA,ts.frequency/2))
+    mv.freq <- c(rep(NA,frequency/2),mv.freq,rep(NA,frequency/2))
     df.relevant[,5] <- mv.freq
-    names(df.relevant)[c(4,5)] <- c(paste0(ts.frequency,"MA"),paste0(ts.frequency,"CMA"))
+    names(df.relevant)[c(4,5)] <- c(paste0(frequency,"MA"),paste0(frequency,"CMA"))
   } else {
     #Odd frequencies
-    mv.freq <- rollmean(df.relevant[,3],ts.frequency)
-    mv.freq <- c(rep(NA,floor(ts.frequency/2)),mv.freq,rep(NA,floor(ts.frequency/2)))
+    mv.freq <- rollmean(df.relevant[,3],frequency)
+    mv.freq <- c(rep(NA,floor(frequency/2)),mv.freq,rep(NA,floor(frequency/2)))
     df.relevant[,4] <- mv.freq
-    names(df.relevant)[4] <- c(paste0(ts.frequency,"MA"))
+    names(df.relevant)[4] <- c(paste0(frequency,"MA"))
   }
   
   #Ratio
@@ -76,7 +75,7 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
   #Average ratio (each period)
   avgrat <- c()
   avgrat.intermediary <- c()
-  for (i in c(1:ts.frequency)){
+  for (i in c(1:frequency)){
     avgrat.intermediary <- c()
     for (j in c(1:no.elts)){
       if (df.relevant[j,2] == i){
@@ -86,12 +85,15 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
     avgrat.intermediary <- na.omit(avgrat.intermediary)
     avgrat <- c(avgrat,sum(avgrat.intermediary)/length(avgrat.intermediary))
   }
-  df.relevant[,ncol(df.relevant)+1] <- c(rep(NA,ts.frequency),avgrat,rep(NA,no.elts-2*ts.frequency))
+  df.relevant[,ncol(df.relevant)+1] <- NA
+  firstrow <- min(which(df.relevant[,2]==1)) + frequency
+  lastrow <- min(which(df.relevant[c(firstrow:no.elts),2]==frequency)) + firstrow - 1
+  df.relevant[c(firstrow:lastrow),ncol(df.relevant)] <- avgrat
   names(df.relevant)[ncol(df.relevant)] <- "AvgRatio"
-  
+
   #Normalized Seasonal Indices
-  seasonalindices <- (ts.frequency*na.omit(df.relevant[,ncol(df.relevant)]))/sum(na.omit(df.relevant[,ncol(df.relevant)]))
-  df.relevant[,ncol(df.relevant)+1] <- rep(seasonalindices,no.elts/ts.frequency)
+  seasonalindices <- (frequency*avgrat)/sum(avgrat)
+  df.relevant[,ncol(df.relevant)+1] <- seasonalindices[df.relevant[,2]]
   names(df.relevant)[ncol(df.relevant)] <- "SI"
   
   #Deseasonalize
@@ -112,19 +114,23 @@ csts <- function(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
     predictions <- c()
     for (i in c(1:no.predict)){
       df.relevant[(no.elts+i),] <- c(rep(NA, ncol(df.relevant)))
-      df.relevant[(no.elts+i),2] <- ifelse(i %% ts.frequency == 0, ts.frequency, i %% ts.frequency)
+      df.relevant[(no.elts+i),1] <- df.relevant[(no.elts+i-1),1]
+      df.relevant[(no.elts+i),2] <- df.relevant[(no.elts+i-1),2] + 1
+      if (df.relevant[(no.elts+i),2] > frequency){
+        df.relevant[(no.elts+i),1] <- df.relevant[(no.elts+i-1),1] +1
+        df.relevant[(no.elts+i),2] <- 1
+      }
       df.relevant[(no.elts+i),(ncol(df.relevant)-3)] <- seasonalindices[df.relevant[(no.elts+i),2]]
       df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
       df.relevant[(no.elts+i),ncol(df.relevant)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-3)] * df.relevant[(no.elts+i),(ncol(df.relevant)-1)]
     }
     #Add periods
     newperiods <- c()
-    for (i in c(1:(ceiling(no.elts + no.predict)/ts.frequency))){
-      newperiods <- c(newperiods,rep(df.relevant[no.elts,1]+i, ts.frequency))
+    for (i in c(1:(ceiling(no.elts + no.predict)/frequency))){
+      newperiods <- c(newperiods,rep(df.relevant[no.elts,1]+i, frequency))
     }
     df.relevant[c((no.elts+1):(no.elts+no.predict)),1] <- newperiods[c(1:no.predict)]
   }
-  
   
   #Print Data Frame (if requested)
   if (df.print) print(df.relevant)

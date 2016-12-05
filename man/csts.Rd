@@ -4,18 +4,29 @@
 \alias{csts}
 \title{Seasonal Time Series Regression}
 \usage{
-csts(ts.data = NA, ts.start = NULL, ts.end = NULL, ts.frequency = 1,
+csts(data = NA, start = NULL, end = NULL, frequency = 1,
   plot.initial = FALSE, out = c("data.frame", "model"), df.print = FALSE,
   no.predict = 0)
 }
 \arguments{
-\item{ts.data}{time series data}
+\item{data}{time series data.}
 
-\item{ts.frequency}{the number of observations per unit of time}
+\item{start}{the time of the first observation. Either a single number or a vector of two
+integers, which specify a natural time unit and a (1-based) number of samples into the time
+unit. See the examples for the use of the second form.}
 
-\item{year.start}{the (optional) year in which the data starts}
+\item{end}{the time of the last observation, specified in the same way as start.}
 
-\item{year.end}{the (optional) year in which the data ends}
+\item{frequency}{the number of observations per unit of time.}
+
+\item{plot.initial}{a boolean indicating whether you want a plot of the initial time series.}
+
+\item{out}{whether you want a data frame (out = "data.frame") or the deseasonalized linear
+model (out = "model") to be provided as output.}
+
+\item{df.print}{a boolean value indicating whether you want the data frame to be printed.}
+
+\item{no.predict}{the number of predictions to perform.}
 }
 \description{
 This function performs time series regression with seasonal considerations by computing the
