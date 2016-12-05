@@ -124,9 +124,9 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
         df.relevant[(no.elts+i),1] <- df.relevant[(no.elts+i-1),1] +1
         df.relevant[(no.elts+i),2] <- 1
       }
-      df.relevant[(no.elts+i),(ncol(df.relevant)-3)] <- seasonalindices[df.relevant[(no.elts+i),2]]
-      df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
-      df.relevant[(no.elts+i),ncol(df.relevant)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-3)] * df.relevant[(no.elts+i),(ncol(df.relevant)-1)]
+      df.relevant[(no.elts+i),(ncol(df.relevant)-4)] <- seasonalindices[df.relevant[(no.elts+i),2]]
+      df.relevant[(no.elts+i),(ncol(df.relevant)-2)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
+      df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-4)] * df.relevant[(no.elts+i),(ncol(df.relevant)-2)]
     }
     #Add periods
     newperiods <- c()
@@ -139,7 +139,7 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
   #Print Data Frame (if requested)
   if (results.print){
     print(df.relevant)
-    cat("\nRoot Mean Square Error:",sqrt(mean(df.relevant[,ncol(df.relevant)])))
+    cat("\nRoot Mean Square Error:",sqrt(mean(df.relevant[c(1:no.elts),ncol(df.relevant)])))
   }
   
   #Return Requested
