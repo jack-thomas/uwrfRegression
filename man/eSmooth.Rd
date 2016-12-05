@@ -4,14 +4,16 @@
 \alias{eSmooth}
 \title{Simplified Exponential Smoothing}
 \usage{
-eSmooth(x)
+eSmooth(x, alpha = 0.2)
 }
 \arguments{
 \item{x}{a vector to be exponentially smoothed}
+
+\item{alpha}{Holt-Winter smoothing alpha}
 }
 \description{
-This function computes an exponentially smoothed time series with a given alpha by
-simplifying the process.
+This function computes an exponentially smoothed time series with a 
+given alpha by simplifying the process.
 }
 \examples{
 eSmooth()
