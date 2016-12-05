@@ -139,7 +139,7 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
   #Print Data Frame (if requested)
   if (results.print){
     print(df.relevant)
-    cat("\nRoot Mean Square Error:",sqrt(mean(df.revenue[,ncol(df.revenue)])))
+    cat("\nRoot Mean Square Error:",sqrt(mean(df.relevant[,ncol(df.relevant)])))
   }
   
   #Return Requested
