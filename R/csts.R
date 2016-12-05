@@ -5,8 +5,6 @@
 #' seasonl ratio, raw seasonal indices, normalized seasonal indices, de-seasonalized raw data,
 #' de-seasonalized predictions, and re-seasonalized predictions. Optionally, it can carry this
 #' forecasting method out past the end of the data set.
-#' . It either returns a data frame containing
-#' an abundance of information (including the final prediction) or it returns the model.
 #' @param data time series data.
 #' @param start	the time of the first observation. Either a single number or a vector of two
 #' integers, which specify a natural time unit and a (1-based) number of samples into the time
@@ -14,18 +12,17 @@
 #' @param end	the time of the last observation, specified in the same way as start.
 #' @param frequency the number of observations per unit of time.
 #' @param plot.initial a boolean indicating whether you want a plot of the initial time series.
-#' @param out whether you want a data frame (out = "data.frame") or the deseasonalized linear
-#' model (out = "model") to be provided as output.
-#' @param results.print a boolean value indicating whether you want the data frame to be printed.
+#' @param df.print a boolean value indicating whether you want the data frame to be printed.
 #' @param no.predict the number of predictions to perform.
+#' @param mad whether to print mean absolute deviation.
 #' @keywords csts
 #' @export
 #' @examples
 #' csts()
 
 csts <- function(data, start = NULL, end = NULL, frequency = 1,
-                 plot.initial = FALSE, out = c("data.frame", "model"),
-                 results.print = FALSE, no.predict = 0){
+                 plot.initial = FALSE, df.print = FALSE,
+                 no.predict = 0, mad = TRUE){
   #How many elements are in the data?
   no.elts <- length(data)
   
@@ -109,10 +106,6 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
   df.relevant[,ncol(df.relevant)+1] <- df.relevant[,ncol(df.relevant)-2] * df.relevant[,ncol(df.relevant)]
   names(df.relevant)[ncol(df.relevant)] <- "ReS"
   
-  #Square Error
-  df.relevant[,ncol(df.relevant)+1] <- (df.relevant[,3] - df.relevant[,ncol(df.relevant)])^2
-  names(df.relevant)[ncol(df.relevant)] <- "SqError"
-  
   #Predictions (if requested)
   if (no.predict != 0){
     predictions <- c()
@@ -124,9 +117,9 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
         df.relevant[(no.elts+i),1] <- df.relevant[(no.elts+i-1),1] +1
         df.relevant[(no.elts+i),2] <- 1
       }
-      df.relevant[(no.elts+i),(ncol(df.relevant)-4)] <- seasonalindices[df.relevant[(no.elts+i),2]]
-      df.relevant[(no.elts+i),(ncol(df.relevant)-2)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
-      df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-4)] * df.relevant[(no.elts+i),(ncol(df.relevant)-2)]
+      df.relevant[(no.elts+i),(ncol(df.relevant)-3)] <- seasonalindices[df.relevant[(no.elts+i),2]]
+      df.relevant[(no.elts+i),(ncol(df.relevant)-1)] <- as.numeric(lm.relevant$coefficients[1]+lm.relevant$coefficients[2]*(no.elts+i))
+      df.relevant[(no.elts+i),ncol(df.relevant)] <- df.relevant[(no.elts+i),(ncol(df.relevant)-3)] * df.relevant[(no.elts+i),(ncol(df.relevant)-1)]
     }
     #Add periods
     newperiods <- c()
@@ -137,18 +130,20 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
   }
   
   #Print Data Frame (if requested)
-  if (results.print){
+  if (df.print){
     print(df.relevant)
-    cat("\nRoot Mean Square Error:",sqrt(mean(df.relevant[c(1:no.elts),ncol(df.relevant)])))
+  }
+  
+  if (mad){
+    if (df.print) cat("\n")
+    mad <- sum(abs(df.relevant$Data - df.relevant$ReS)[c(1:no.elts)])/no.elts
+    cat("MAD:",mad)
   }
   
   #Return Requested
-  if (out[1] == "model"){
-    invisible(lm.relevant)
+  if (mad){
+    invisible(mad)
   } else {
-    if (out[1] != "data.frame"){
-      cat("Invalid out specified. Assuming data frame.")
-    }
     invisible(df.relevant)
   }
 }

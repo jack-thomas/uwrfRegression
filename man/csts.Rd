@@ -5,8 +5,7 @@
 \title{Seasonal Time Series Regression}
 \usage{
 csts(data, start = NULL, end = NULL, frequency = 1,
-  plot.initial = FALSE, out = c("data.frame", "model"),
-  results.print = FALSE, no.predict = 0)
+  plot.initial = FALSE, df.print = FALSE, no.predict = 0, mad = TRUE)
 }
 \arguments{
 \item{data}{time series data.}
@@ -21,12 +20,11 @@ unit. See the examples for the use of the second form.}
 
 \item{plot.initial}{a boolean indicating whether you want a plot of the initial time series.}
 
-\item{out}{whether you want a data frame (out = "data.frame") or the deseasonalized linear
-model (out = "model") to be provided as output.}
-
-\item{results.print}{a boolean value indicating whether you want the data frame to be printed.}
+\item{df.print}{a boolean value indicating whether you want the data frame to be printed.}
 
 \item{no.predict}{the number of predictions to perform.}
+
+\item{mad}{whether to print mean absolute deviation.}
 }
 \description{
 This function performs time series regression with seasonal considerations by computing the
@@ -34,8 +32,6 @@ following (as per Dr. Chatterjee's instruction in Fall 2016): (centered) moving 
 seasonl ratio, raw seasonal indices, normalized seasonal indices, de-seasonalized raw data,
 de-seasonalized predictions, and re-seasonalized predictions. Optionally, it can carry this
 forecasting method out past the end of the data set.
-. It either returns a data frame containing
-an abundance of information (including the final prediction) or it returns the model.
 }
 \examples{
 csts()
