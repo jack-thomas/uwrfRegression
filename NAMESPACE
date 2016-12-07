@@ -3,5 +3,6 @@
 export(cmlr)
 export(cslr)
 export(csts)
+export(ctsr)
 export(eSmooth)
 export(ts.poly)

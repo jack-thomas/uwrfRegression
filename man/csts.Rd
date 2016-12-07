@@ -5,7 +5,8 @@
 \title{Seasonal Time Series Regression}
 \usage{
 csts(data, start = NULL, end = NULL, frequency = 1,
-  plot.initial = FALSE, df.print = FALSE, no.predict = 0, mad = TRUE)
+  plot.initial = FALSE, df.print = FALSE, no.predict = 0, mad = TRUE,
+  mad.print = FALSE)
 }
 \arguments{
 \item{data}{time series data.}

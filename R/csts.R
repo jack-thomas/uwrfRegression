@@ -22,7 +22,7 @@
 
 csts <- function(data, start = NULL, end = NULL, frequency = 1,
                  plot.initial = FALSE, df.print = FALSE,
-                 no.predict = 0, mad = TRUE){
+                 no.predict = 0, mad = TRUE, mad.print = FALSE){
   #How many elements are in the data?
   no.elts <- length(data)
   
@@ -137,7 +137,7 @@ csts <- function(data, start = NULL, end = NULL, frequency = 1,
   if (mad){
     if (df.print) cat("\n")
     mad <- sum(abs(df.relevant$Data - df.relevant$ReS)[c(1:no.elts)])/no.elts
-    cat("MAD:",mad)
+    if (mad.print) cat("MAD:",mad)
   }
   
   #Return Requested
