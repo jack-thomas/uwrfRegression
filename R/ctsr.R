@@ -48,5 +48,5 @@ ctsr <- function(data, frequency = 1){
   cat(sprintf("\n  %-34s : %5.2f", "lm(x ~ t + t^3)",mad[9]))
   cat(sprintf("\n  %-34s : %5.2f", "lm(x ~ t^2 + t^3)",mad[10]))
   cat(sprintf("\n  %-34s : %5.2f", "lm(x ~ t + t^2 + t^3)",mad[11]))
-  cat(sprintf("\n  %-34s : %5.2f", "csts(data, frequency = n",mad[12]))
+  cat(sprintf("\n  %-34s : %5.2f", paste0("csts(data, frequency = ", frequency, ")"),mad[12]))
 }
