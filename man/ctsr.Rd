@@ -2,7 +2,7 @@
 % Please edit documentation in R/ctsr.R
 \name{ctsr}
 \alias{ctsr}
-\title{Time Series Regression}
+\title{Chatterjee Time Series Regression}
 \usage{
 ctsr(data, frequency = 1)
 }
