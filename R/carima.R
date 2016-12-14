@@ -45,7 +45,7 @@ carima <- function(data, silent = FALSE, no.predict = 0){
     }
     ar.relevant <- arima(data, order = c(suggests, 0, 0))
     if(no.predict != 0){
-      predictions <- c(predict(ar.relevant, n.ahead = 5)$pred)
+      predictions <- c(predict(ar.relevant, n.ahead = no.predict)$pred)
       if(!silent) cat("\n\n")
       print(cbind(predictions))
     }
