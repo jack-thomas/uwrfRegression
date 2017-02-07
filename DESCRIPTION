@@ -4,7 +4,7 @@ Version: 0.0.1
 Authors@R: person(given = "Jack", family="Thomas", email = "jack@jackthomas.io", role = c("aut", "cre"))
 Maintainer: Jack Thomas <jack@jackthomas.io>
 Description: Automates regression using the methodology prescribed at the University of Wisconsin-River Falls in Math 327 - Applied Regression Analysis.
-Depends: R (>= 3.3.2), fmsb, lmtest, MASS, usdm, xts
+Depends: R (>= 3.2.0), fmsb, lmtest, MASS, usdm, xts
 License: GPL-2
 URL: https://github.com/thecrosbyfan/uwrfRegression
 Encoding: UTF-8
