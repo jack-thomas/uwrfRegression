@@ -17,7 +17,7 @@ Load ``devtools`` and install the package in this repository:
 
 ## Functions In This Package
 
-The following packages are included as part of this package. Please note that some of them are not yet completed. See [projects](https://github.com/thecrosbyfan/uwrfRegression/projects/) for more information.
+The following packages are included as part of this package. Please note that some of them are not yet completed.
 
 - ``carima()``, AR(k) modeling.
 - ``cmlr()``, multiple linear regression.
