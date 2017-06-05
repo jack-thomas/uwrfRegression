@@ -13,7 +13,7 @@ If you don't have ``devtools`` installed, install it:
 Load ``devtools`` and install the package in this repository:
 
     library(devtools)
-    install_github("thecrosbyfan/uwrfRegression")
+    install_github("jack-thomas/uwrfRegression")
 
 ## Functions In This Package
 
